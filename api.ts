@@ -19,6 +19,13 @@ export type Artist = {
 
 export type Album = {
   name: string;
+  images: Array<Image>;
+};
+
+export type Image = {
+  url: string;
+  width: number;
+  height: number;
 };
 
 export async function getPlaylist(playlist): Promise<Playlist> {
@@ -37,7 +44,8 @@ export async function getPlaylist(playlist): Promise<Playlist> {
     return {
       name: t.track.name,
       album: {
-        name: t.track.album.name
+        name: t.track.album.name,
+        images: t.track.album.images
       },
       artists: t.track.artists.map(a => ({
         name: a.name
