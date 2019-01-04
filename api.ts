@@ -5,6 +5,7 @@ export type Playlist = {
   name: string;
   description: string;
   tracks: Array<Track>;
+  link: string;
 };
 
 export type Track = {
@@ -39,6 +40,7 @@ export async function getPlaylist(playlist): Promise<Playlist> {
     json: true
   });
   const { name, description } = response;
+  const link = response.external_urls.spotify;
   const tracks: Array<Track> = response.tracks.items.map(t => {
     const albumName = t.track.album.name;
     return {
@@ -52,5 +54,5 @@ export async function getPlaylist(playlist): Promise<Playlist> {
       }))
     };
   });
-  return { name, description, tracks };
+  return { name, description, tracks, link };
 }
