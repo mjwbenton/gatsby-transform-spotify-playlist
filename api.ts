@@ -1,7 +1,27 @@
 import request from "request-promise";
 import getAuthorizationHeader from "./auth";
 
-export async function getPlaylist(playlist) {
+export type Playlist = {
+  name: string;
+  description: string;
+  tracks: Array<Track>;
+};
+
+export type Track = {
+  name: string;
+  artists: Array<Artist>;
+  album: Album;
+};
+
+export type Artist = {
+  name: string;
+};
+
+export type Album = {
+  name: string;
+};
+
+export async function getPlaylist(playlist): Promise<Playlist> {
   const authHeader = await getAuthorizationHeader();
   const response = await request({
     method: "GET",
@@ -11,5 +31,18 @@ export async function getPlaylist(playlist) {
     },
     json: true
   });
-  return response;
+  const { name, description } = response;
+  const tracks: Array<Track> = response.tracks.items.map(t => {
+    const albumName = t.track.album.name;
+    return {
+      name: t.track.name,
+      album: {
+        name: t.track.album.name
+      },
+      artists: t.track.artists.map(a => ({
+        name: a.name
+      }))
+    };
+  });
+  return { name, description, tracks };
 }
