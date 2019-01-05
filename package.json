@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "types": "index.d.ts",
-  "author": "",
-  "license": "ISC",
+  "author": "Matt Benton <m@mattb.tech>",
+  "license": "MIT",
   "dependencies": {
     "@types/node": "^10.12.18",
     "@types/request-promise": "^4.1.42",
