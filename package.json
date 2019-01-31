@@ -1,20 +1,24 @@
 {
-  "name": "@mattb/gatsby-transform-spotify-playlist",
+  "name": "@mattb.tech/gatsby-transform-spotify-playlist",
   "version": "1.0.0",
-  "description": "",
+  "description": "Gatsby transform to fetch references spotify playlists",
   "main": "index.js",
   "types": "index.d.ts",
   "author": "Matt Benton <m@mattb.tech>",
   "license": "MIT",
   "dependencies": {
-    "@types/node": "^10.12.18",
-    "@types/request-promise": "^4.1.42",
     "gatsby-node-helpers": "^0.3.0",
     "request": "^2.88.0",
-    "request-promise": "^4.2.2",
+    "request-promise": "^4.2.2"
+  },
+  "devDependencies": {
+    "@types/node": "^10.12.18",
+    "@types/request-promise": "^4.1.42",
     "typescript": "^3.2.2"
   },
   "scripts": {
-    "build": "tsc"
-  }
+    "build": "tsc",
+    "prepare": "npm run build"
+  },
+  "files": ["*.js", "*.d.ts"]
 }
